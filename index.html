@@ -3,40 +3,47 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Standard favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- PNG favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Android Chrome Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
     <title>Dobro došli na NIQ!</title>
     <style>
       html, body { height: 100%; margin: 0; padding: 0; }
       body { display: flex; align-items: center; justify-content: center; }
 
       .bg {
+        --l: 0.6;
+        --c: 0.3;
         background: linear-gradient(
           -45deg,
-          #ee7752,
-          #e73c7e,
-          #8223d5,
-          #4d23d5,
-          #2350d5,
-          #23a6d5,
-          #23d5ab,
-          #77ef52,
-          #fbf510
+          oklch(var(--l) var(--c) calc(var(--h) - 50)),
+          oklch(var(--l) var(--c) calc(var(--h) + 50))
         );
-        background-size: 400% 400%;
-        animation-name: gradient;
-        animation-duration: 15s;
+        animation-name: gradient-h;
+        animation-duration: 30s;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
       }
-      @keyframes gradient {
-        0% {
-          background-position: 0 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0 50%;
-        }
+
+      @property --h {
+        syntax: "<number>";
+        inherits: false;
+        initial-value: 0;
+      }
+
+      @keyframes gradient-h {
+        0%   {--h: 0;}
+        100%  {--h: 360;}
       }
 
       .niq {
@@ -44,6 +51,8 @@
         font-family: system-ui, sans-serif;
         font-size: clamp(5rem, -3.6957rem + 43.4783vw, 30rem);
         line-height: 1;
+        margin: 0;
+        user-select: none;
       }
     </style>
   </head>
